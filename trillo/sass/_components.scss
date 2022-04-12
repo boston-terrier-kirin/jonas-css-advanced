@@ -1,44 +1,136 @@
 // LOGO
 .logo {
   height: 3.25rem;
+  margin-left: 2rem;
 }
 
 // SEARCH BOX
 .search {
+  // grow/shrink/basis
+  flex: 0 0 40%;
+
+  // inputと虫眼鏡のflex
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+
+    // focusのtransition
+    transition: all 0.2s;
+
+    // 虫眼鏡が入るように、-3.5rem
+    margin-right: -3.25rem;
+
+    &:focus {
+      // focusしたら背景を暗くして100%にする
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+
+    &::placeholder {
+      font-weight: 100;
+      // placeholderの色を薄くする
+      color: var(--color-grey-light-4);
+    }
+  }
+
+  &__input:focus + &__button {
+    // inputにfocusしたら、buttonの色も暗くする
+    background-color: var(--color-grey-light-3);
   }
 
   &__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      // クリックしたら下に2px
+      transform: translateY(2px);
+    }
   }
 
   &__icon {
     height: 2rem;
     width: 2rem;
+    fill: var(--color-grey-dark-3);
   }
 }
 
 // USER NAV
 .user-nav {
+  // logo と search はcenterにしたいので、headerは align-item: center にしているが、navは上下に目一杯広げたいので、
+  // align-self: stretch にする。
+  align-self: stretch;
+
+  display: flex;
+  align-items: center;
+
+  // 直接の子供である、__icon-box と __user をselect
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+
+    // align-items: stretchで上下に目一杯広げてもOK
+    height: 100%;
+
+    // icon-box とuser の中のflex
+    // これがないと上寄せになってしまう。
+    display: flex;
+    align-items: center;
+  }
+
+  & > *:hover {
+    background-color: var(--color-grey-light-2);
+  }
+
   &__icon-box {
+    // 〇のnotificationをpositionするために、relative
+    position: relative;
   }
 
   &__icon {
     height: 2.25rem;
     width: 2.25rem;
+    fill: var(--color-grey-dark-2);
   }
 
   &__notification {
-  }
+    font-size: 0.8rem;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: #fff;
 
-  &__user {
+    // icon-boxからのabsolute
+    position: absolute;
+    top: 1.5rem;
+    right: 1.1rem;
+
+    // 〇の中のflex
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__user-photo {
     height: 3.75rem;
     width: 3.75rem;
     border-radius: 50%;
-  }
-
-  &__user-name {
+    margin-right: 1rem;
   }
 }

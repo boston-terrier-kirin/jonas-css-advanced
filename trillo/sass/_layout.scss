@@ -8,9 +8,17 @@
 }
 
 .header {
+  font-size: 1.4rem;
   height: 7rem;
   background-color: #fff;
   border-bottom: var(--color-grey-light-2);
+
+  // logo/search/nav のflex
+  // space-between で左右中央に配置
+  // header が高さ7remなので、align-items: center
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content {
