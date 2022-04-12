@@ -137,15 +137,74 @@
 
 // SIDE NAV
 .side-nav {
+  font-size: 1.4rem;
+  list-style: none;
+  margin-top: 2rem;
+
   &__item {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
   }
 
-  &__link {
+  &__item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    // hoverした初期状態は、幅5px
+    width: 5px;
+    background-color: var(--color-primary);
+
+    transform: scaleY(0);
+    // centerがデフォルト
+    // transform-origin: top;
+
+    // transform 0.2 : scaleYが0.2秒間で起きる
+    // width 0.4s 0.2s : widthが100%になるのが、0.2 delay で 0.2秒間で起きる。
+    transition: transoform 0.2s, width 0.2s 0.2s, background-color 0.1s;
+  }
+
+  &__item:hover::before,
+  &__item--active::before {
+    transform: scaleY(1);
+    width: 100%;
+  }
+
+  &__item:active::before {
+    background-color: var(--color-primary-light);
+  }
+
+  &__link:link,
+  &__link:visited {
+    color: var(--color-grey-light-1);
+    text-decoration: none;
+    text-transform: uppercase;
+    // a はinlineなので、縦方向のpaddingが効かないため、blockに変更する。
+    // liの中で横並べすることはないので、心置きなくblockにする。
+    display: block;
+    padding: 1.5rem 3rem;
+
+    // z-indexはpositionがついていないと効かないらしい。
+    position: relative;
+    z-index: 10;
+
+    // iconとspanのflex
+    display: flex;
+    align-items: center;
   }
 
   &__icon {
     width: 1.75rem;
     height: 1.75rem;
+    margin-right: 2rem;
+    // currentColorで親要素と同じ色にできる。CSSフレームワークを使っている場合に、同じ色にする場合に便利かも。
+    // fill: var(--color-grey-light-1);
+    fill: currentColor;
   }
 }
 
