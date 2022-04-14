@@ -215,3 +215,55 @@
   text-align: center;
   padding: 2.5rem;
 }
+
+// GALLERY
+.gallery {
+  display: flex;
+
+  &__photo {
+    // display: flex になっているので幅は決まっている。100%にすることでちょうど良いサイズになる。
+    width: 100%;
+    display: block;
+  }
+}
+
+// OVERVIEW
+.overview {
+  display: flex;
+
+  &__heading {
+  }
+
+  &__stars {
+    // TEST用
+    background-color: aquamarine;
+
+    // flex-grow: 1 なので、starsの幅が大きくなる。
+    // headerで右寄せにするときに使う技。
+    // しかしながらこの技は、hoverしたときに全体が反応してしまうという欠点あり。
+    // flex: 1;
+
+    // こっちが正解
+    // これであればmarginが大きくなるので、hover問題が解決できる。
+    margin-right: auto;
+  }
+
+  &__icon-star,
+  &__icon-location {
+    width: 1.75rem;
+    height: 1.75rem;
+    fill: var(--color-primary);
+  }
+
+  &__location {
+  }
+
+  &__rating {
+  }
+
+  &__rating-average {
+  }
+
+  &__rating-count {
+  }
+}
