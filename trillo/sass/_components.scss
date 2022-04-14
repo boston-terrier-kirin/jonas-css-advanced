@@ -230,13 +230,20 @@
 // OVERVIEW
 .overview {
   display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-grey-light-2);
 
   &__heading {
+    font-size: 2.25rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1.5rem 3rem;
   }
 
   &__stars {
     // TEST用
-    background-color: aquamarine;
+    // background-color: aquamarine;
 
     // flex-grow: 1 なので、starsの幅が大きくなる。
     // headerで右寄せにするときに使う技。
@@ -246,6 +253,9 @@
     // こっちが正解
     // これであればmarginが大きくなるので、hover問題が解決できる。
     margin-right: auto;
+
+    // icon-starの余分な空白を無くすためのflex。
+    display: flex;
   }
 
   &__icon-star,
@@ -256,14 +266,64 @@
   }
 
   &__location {
+    font-size: 1.2rem;
+
+    // iconとbuttonのためのflex
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-location {
+    margin-right: 0.5rem;
   }
 
   &__rating {
+    background-color: var(--color-primary);
+    color: #fff;
+    margin-left: 3rem;
+    padding: 0 2.25rem;
+
+    // .user-navと同じパターン。align-items: center で全体を縦中央にして、一部だけを縦に広げる技。
+    align-self: stretch;
+
+    // averageとcountのためのflex。
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   &__rating-average {
+    font-size: 2.25rem;
+    font-weight: 300;
+
+    // 上下のスペースを狭くしたいので、-5px
+    margin-bottom: -5px;
   }
 
   &__rating-count {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}
+
+// BTN
+.btn-inline {
+  border: none;
+  color: var(--color-primary);
+  font-size: inherit;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    color: var(--color-grey-dark-1);
+  }
+
+  &:focus {
+    outline: none;
   }
 }
